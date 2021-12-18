@@ -1,0 +1,21 @@
+﻿@using StudentsManagementFinal.Models;
+@model List<School>
+
+<div />
+
+
+@Html.ActionLink("Show all students", "ShowAllStudent", null, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+@Html.ActionLink("Order students By ascending id", "OrderByAscId", null, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+@Html.ActionLink("Order students By descending id", "OrderByDscId", null, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+@Html.ActionLink("Show student with max id", "IdMax", null, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+@Html.ActionLink("Show student with min id", "IdMin", null, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+<hr />
+@foreach (var item in Model)
+{
+    <p>School Name: @item.SchoolName</p>
+
+    @Html.ActionLink("Delete", "DeleteSchool", new { id = item.SchoolId }, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+    @Html.ActionLink("Add student", "AddStudent", new { id = item.SchoolId }, htmlAttributes: new { @class = "btn btn-primary mr-2", @type = "button" })
+    @Html.ActionLink("See student", "ListStudent", new { id = item.SchoolId }, htmlAttributes: new { @class = "btn btn-primary", @type = "button" })
+    <hr />
+}

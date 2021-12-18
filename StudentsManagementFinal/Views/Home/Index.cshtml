@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/ViewPage1.cshtml";
+}
+
+<h2 class="text-center mt-2">Schools</h2>
+
+<div class="mb-2 p-3">
+    @Html.ActionLink("Create School", "InsertSchool", null, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.Action("PrintSchool")
+</div>

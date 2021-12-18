@@ -1,0 +1,72 @@
+﻿@model IEnumerable<StudentsManagementFinal.Models.Student>
+
+@{
+    ViewBag.Title = "OrderByDscId";
+    Layout = "~/Views/Layout/ViewPage1.cshtml";
+}
+
+<h2>OrderByDscId</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentlId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentAverage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDateStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentlId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentAverage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDateStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditStudent", new { id = item.StudentlId }) |
+            @Html.ActionLink("Delete", "DeleteStudent", new { id = item.StudentlId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to Schools list", "Index")
+</div>
