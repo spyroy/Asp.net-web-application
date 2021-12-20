@@ -5,6 +5,8 @@ using System.Net;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
+using System.Web.UI;
+using ServiceStack.Redis;
 using StudentsManagementFinal.Models;
 
 namespace StudentsManagementFinal.Controllers
@@ -68,6 +70,8 @@ namespace StudentsManagementFinal.Controllers
             {
                 db.Students.Add(student);
                 db.SaveChanges();
+                SaveData("localhost",student.StudentlId, student);
+                string ans = ReadData("localhost", student.StudentlId);
                 return RedirectToAction("Index");
             }
             ViewBag.Test = id;
@@ -162,6 +166,27 @@ namespace StudentsManagementFinal.Controllers
                 ViewBag.Notification = "Found " + ListSearch.Count + " results";
             }
             return View(ListSearch.OrderBy(x => x.StudentFirstName));
+        }
+
+        private static void SaveData(string host, int key, Student value)
+        {
+            string keyS = key.ToString();
+            using(RedisClient client=new RedisClient(host))
+            {
+                if(client.Get<string>(keyS) == null)
+                {
+                    client.Set(keyS, value);
+                }
+            }
+        }
+
+        public static string ReadData(string host, int key)
+        {
+            string keyS = key.ToString(); 
+            using (RedisClient client = new RedisClient(host))
+            {
+                return client.Get<string>(keyS);
+            }
         }
 
 
